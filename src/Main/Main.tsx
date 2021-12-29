@@ -232,19 +232,20 @@ const main = {
     }
 }
 // @ts-ignore
-const TestComponent: React.FC<MainComponentProps> = ({deviceType}) => {
+const Main: React.FC<MainComponentProps> = (props) => {
 
+    let {deviceType} =props;
     return(
         <div>
             <Brodcast page3={main.page3} page4={main.page4}/>
             <About page5={main.page5}/>
             <Review page6={main.page6}/>
             <Calendar page7={main.page7}/>
-            {/*<News deviceType={deviceType} page8={main.page8}/>*/}
+            <News deviceType={deviceType} page8={main.page8}/>
             <Maps page9={main.page9}/>
             <Websites page10={main.page10}/>
         </div>
     )
 };
 
-export default TestComponent;
+export default Main;
