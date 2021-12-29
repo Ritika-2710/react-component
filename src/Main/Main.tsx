@@ -240,7 +240,7 @@ const TestComponent: React.FC<MainComponentProps> = ({deviceType}) => {
             <About page5={main.page5}/>
             <Review page6={main.page6}/>
             <Calendar page7={main.page7}/>
-            <News deviceType={deviceType} page8={main.page8}/>
+            {/*<News deviceType={deviceType} page8={main.page8}/>*/}
             <Maps page9={main.page9}/>
             <Websites page10={main.page10}/>
         </div>
