@@ -1,0 +1,24 @@
+.aboutdiv-col {
+    margin-top: 4%;
+}
+.aboutdiv-col .aboutdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: white;
+    flex-direction: column;
+    padding: 40px 20px;
+    border-radius: 8px;
+    height: 350px;
+    text-align: center;
+}
+.aboutdiv-col .aboutdiv .aboutdiv-image img {
+    width: 100%;
+}
+.aboutdiv-col .aboutdiv .aboutdiv-heading {
+    padding-bottom: 10px;
+    border-bottom: 2px solid coral;
+}
+.aboutdiv-col .aboutdiv .aboutdiv-para {
+    font-weight: 600;
+}

@@ -1,0 +1,89 @@
+.cal_container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-direction: row;
+}
+.cal_container .cal_left {
+    position: relative;
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+    min-width: 120px;
+    padding: 15px;
+    background-color: #f9d8b8;
+}
+.cal_container .cal_left .small_title {
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 8px;
+    font-size: 13px;
+    text-align: center;
+    font-weight: 500;
+}
+.cal_container .cal_left .date {
+    text-transform: uppercase;
+    color: #000;
+    margin-bottom: 0;
+    font-weight: bold;
+    text-align: center;
+}
+.cal_container .cal_left .line {
+    background-color: #c4494b;
+    margin: 0 2px;
+    height: 1px;
+    margin-left: -5px;
+    margin-right: -5px;
+}
+.cal_container .cal_left:before {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    left: 100%;
+    top: 0;
+    clip-path: polygon(100% 100%, 0 0, 0 99%);
+    position: absolute;
+    background-color: #e2c7cc;
+}
+.cal_container .cal_left:after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 15px;
+    bottom: 0;
+    left: 100%;
+    clip-path: polygon(100% 0, 0 0, 0 99%);
+    position: absolute;
+    background-color: #e2c7cc;
+}
+.cal_container .cal_right {
+    z-index: 2;
+    background-color: white;
+    padding: 10px 10px 15px 15px;
+    width: 100%;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.cal_container .cal_right .first {
+    margin-bottom: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.cal_container .cal_right .first p {
+    font-size: 15px;
+    color: #000;
+    margin-bottom: 0;
+}
+.cal_container .cal_right .first img {
+    width: 25px;
+    height: 25px;
+    object-fit: contain;
+}
+.cal_container .cal_right .title {
+    font-size: 16px;
+    color: #000;
+    margin-bottom: 0;
+    font-weight: 500;
+}

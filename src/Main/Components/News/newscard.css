@@ -1,0 +1,31 @@
+.newscard {
+    display: none;
+}
+@media (max-width: 768px) {
+    .newscard {
+        display: flex;
+        justify-content: center;
+    }
+    .newscard .newscard-div {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin: 15px;
+    }
+    .newscard .newscard-div img {
+        width: 100%;
+    }
+    .newscard .newscard-div div {
+        margin: 15px 0;
+    }
+    .newscard .newscard-div div .para-card {
+        margin-bottom: 0;
+    }
+    .newscard .newscard-div div .para-card span {
+        color: darkred;
+    }
+    .newscard .newscard-div div .card-heading {
+        margin-top: 5px;
+        margin-right: 20px;
+    }
+}

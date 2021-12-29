@@ -1,0 +1,25 @@
+:root {
+    --darkbrown:#c16204;
+    --orange:#fd7d00;
+    --lightorange:#f38f4d;
+    --darkorange:#fb8a47;
+    --peach:#ffeddf;
+    --far-white:#fffaf6;
+    --creamish:#ffe3cb;
+    --lightpeach:#faeeee;
+    --foot_color:#fd8201;
+    --text-color:#ffffff;
+    --lightgray:#d3d3d3;
+}
+body {
+    background: #fefaf6;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+.para-text
+{
+    font-size:14px;
+    margin-bottom: 10px;
+}

@@ -1,0 +1,16 @@
+.heading-col {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    position: relative;
+    margin-bottom: 4%;
+}
+.heading-col .heading {
+    text-transform: uppercase;
+}
+.heading-col img {
+    position: absolute;
+    width: fit-content;
+    top: 30px;
+}

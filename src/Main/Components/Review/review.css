@@ -1,0 +1,23 @@
+.review {
+    background: var(--far-white);
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+.review .review-col {
+    display: flex;
+    justify-content: center;
+}
+.review .review-col .review-images {
+    position: relative;
+    margin-bottom: 20px;
+}
+.review .review-col .review-images img {
+    width: 100%;
+    border-radius: 8px;
+}
+.review .review-col .review-images .review-para {
+    background-color: #fff2dac9;
+    position: absolute;
+    bottom: 15px;
+    padding: 0 10px;
+}
