@@ -4,6 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
 var reactBootstrap = require('react-bootstrap');
+require('bootstrap/dist/css/bootstrap.min.css');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;

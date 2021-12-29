@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function styleInject(css, ref) {
   if ( ref === void 0 ) ref = {};
