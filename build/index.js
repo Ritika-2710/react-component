@@ -3,7 +3,7 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
-var jsxRuntime = require('react/jsx-runtime');
+var reactBootstrap = require('react-bootstrap');
 
 function _interopNamespace(e) {
   if (e && e.__esModule) return e;
@@ -64,205 +64,17 @@ var TestComponent$1 = function (_a) {
 var css_248z$9 = ":root {\r\n    --darkbrown:#c16204;\r\n    --orange:#fd7d00;\r\n    --lightorange:#f38f4d;\r\n    --darkorange:#fb8a47;\r\n    --peach:#ffeddf;\r\n    --far-white:#fffaf6;\r\n    --creamish:#ffe3cb;\r\n    --lightpeach:#faeeee;\r\n    --foot_color:#fd8201;\r\n    --text-color:#ffffff;\r\n    --lightgray:#d3d3d3;\r\n}\r\nbody {\r\n    background: #fefaf6;\r\n}\r\n* {\r\n    margin: 0;\r\n    padding: 0;\r\n}\r\n.para-text\r\n{\r\n    font-size:14px;\r\n    margin-bottom: 10px;\r\n}";
 styleInject(css_248z$9);
 
-var classnames = {exports: {}};
-
-/*!
-  Copyright (c) 2018 Jed Watson.
-  Licensed under the MIT License (MIT), see
-  http://jedwatson.github.io/classnames
-*/
-
-(function (module) {
-/* global define */
-
-(function () {
-
-	var hasOwn = {}.hasOwnProperty;
-
-	function classNames() {
-		var classes = [];
-
-		for (var i = 0; i < arguments.length; i++) {
-			var arg = arguments[i];
-			if (!arg) continue;
-
-			var argType = typeof arg;
-
-			if (argType === 'string' || argType === 'number') {
-				classes.push(arg);
-			} else if (Array.isArray(arg)) {
-				if (arg.length) {
-					var inner = classNames.apply(null, arg);
-					if (inner) {
-						classes.push(inner);
-					}
-				}
-			} else if (argType === 'object') {
-				if (arg.toString === Object.prototype.toString) {
-					for (var key in arg) {
-						if (hasOwn.call(arg, key) && arg[key]) {
-							classes.push(key);
-						}
-					}
-				} else {
-					classes.push(arg.toString());
-				}
-			}
-		}
-
-		return classes.join(' ');
-	}
-
-	if (module.exports) {
-		classNames.default = classNames;
-		module.exports = classNames;
-	} else {
-		window.classNames = classNames;
-	}
-}());
-}(classnames));
-
-var classNames = classnames.exports;
-
-const ThemeContext = /*#__PURE__*/React__namespace.createContext({
-  prefixes: {}
-});
-
-function useBootstrapPrefix(prefix, defaultPrefix) {
-  const {
-    prefixes
-  } = React.useContext(ThemeContext);
-  return prefix || prefixes[defaultPrefix] || defaultPrefix;
-}
-
-const DEVICE_SIZES$1 = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
-function useCol({
-  as,
-  bsPrefix,
-  className,
-  ...props
-}) {
-  bsPrefix = useBootstrapPrefix(bsPrefix, 'col');
-  const spans = [];
-  const classes = [];
-  DEVICE_SIZES$1.forEach(brkPoint => {
-    const propValue = props[brkPoint];
-    delete props[brkPoint];
-    let span;
-    let offset;
-    let order;
-
-    if (typeof propValue === 'object' && propValue != null) {
-      ({
-        span,
-        offset,
-        order
-      } = propValue);
-    } else {
-      span = propValue;
-    }
-
-    const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
-    if (span) spans.push(span === true ? `${bsPrefix}${infix}` : `${bsPrefix}${infix}-${span}`);
-    if (order != null) classes.push(`order${infix}-${order}`);
-    if (offset != null) classes.push(`offset${infix}-${offset}`);
-  });
-  return [{ ...props,
-    className: classNames(className, ...spans, ...classes)
-  }, {
-    as,
-    bsPrefix,
-    spans
-  }];
-}
-const Col = /*#__PURE__*/React__namespace.forwardRef( // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-(props, ref) => {
-  const [{
-    className,
-    ...colProps
-  }, {
-    as: Component = 'div',
-    bsPrefix,
-    spans
-  }] = useCol(props);
-  return /*#__PURE__*/jsxRuntime.jsx(Component, { ...colProps,
-    ref: ref,
-    className: classNames(className, !spans.length && bsPrefix)
-  });
-});
-Col.displayName = 'Col';
-var Col$1 = Col;
-
-const defaultProps = {
-  fluid: false
-};
-const Container = /*#__PURE__*/React__namespace.forwardRef(({
-  bsPrefix,
-  fluid,
-  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-  as: Component = 'div',
-  className,
-  ...props
-}, ref) => {
-  const prefix = useBootstrapPrefix(bsPrefix, 'container');
-  const suffix = typeof fluid === 'string' ? `-${fluid}` : '-fluid';
-  return /*#__PURE__*/jsxRuntime.jsx(Component, {
-    ref: ref,
-    ...props,
-    className: classNames(className, fluid ? `${prefix}${suffix}` : prefix)
-  });
-});
-Container.displayName = 'Container';
-Container.defaultProps = defaultProps;
-var Container$1 = Container;
-
-const DEVICE_SIZES = ['xxl', 'xl', 'lg', 'md', 'sm', 'xs'];
-const Row = /*#__PURE__*/React__namespace.forwardRef(({
-  bsPrefix,
-  className,
-  // Need to define the default "as" during prop destructuring to be compatible with styled-components github.com/react-bootstrap/react-bootstrap/issues/3595
-  as: Component = 'div',
-  ...props
-}, ref) => {
-  const decoratedBsPrefix = useBootstrapPrefix(bsPrefix, 'row');
-  const sizePrefix = `${decoratedBsPrefix}-cols`;
-  const classes = [];
-  DEVICE_SIZES.forEach(brkPoint => {
-    const propValue = props[brkPoint];
-    delete props[brkPoint];
-    let cols;
-
-    if (propValue != null && typeof propValue === 'object') {
-      ({
-        cols
-      } = propValue);
-    } else {
-      cols = propValue;
-    }
-
-    const infix = brkPoint !== 'xs' ? `-${brkPoint}` : '';
-    if (cols != null) classes.push(`${sizePrefix}${infix}-${cols}`);
-  });
-  return /*#__PURE__*/jsxRuntime.jsx(Component, {
-    ref: ref,
-    ...props,
-    className: classNames(className, decoratedBsPrefix, ...classes)
-  });
-});
-Row.displayName = 'Row';
-var Row$1 = Row;
-
 var css_248z$8 = ".brodcast-functions {\r\n    position: relative;\r\n    z-index: 10;\r\n    margin-top: 250px;\r\n}\r\n@media (min-width: 991px) {\r\n    .brodcast-functions .functions {\r\n        padding: 0 100px;\r\n    }\r\n}\r\n.brodcast-functions .functions .function-parent {\r\n    display: flex;\r\n    justify-content: center;\r\n    padding: 25px 0;\r\n    box-shadow: 0 1px 1px 1px #d3d3d3;\r\n    border-radius: 8px;\r\n    margin-bottom: -3%;\r\n    margin-top: -15px;\r\n    z-index: 1;\r\n    background: #fff;\r\n}\r\n.brodcast-functions .functions .function-parent .function-col {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: column;\r\n}\r\n.brodcast-functions .functions .function-parent .function-col .function-image {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    width: 90px;\r\n    height: 90px;\r\n}\r\n.brodcast-functions .functions .function-parent .function-col .function-image img {\r\n    width: 100%;\r\n}\r\n.brodcast-functions .functions .function-parent .function-col h6:hover {\r\n    cursor: pointer;\r\n    color: coral;\r\n}\r\n.brodcast-functions .functions .function-parent .border-lines:not(:last-child) {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: column;\r\n}\r\n.brodcast-functions .functions .function-parent .border-lines:not(:last-child) .line {\r\n    width: 4px;\r\n    height: 20px;\r\n    background: red;\r\n    margin-top: 20px;\r\n}\r\n@media (max-width: 590px) {\r\n    .brodcast-functions .functions .function-parent .border-lines:not(:last-child) {\r\n        display: none;\r\n    }\r\n}\r\n@media (max-width: 768px) {\r\n    .brodcast-functions .functions .function-parent {\r\n        justify-content: space-around;\r\n    }\r\n}\r\n@media (max-width: 590px) {\r\n    .brodcast-functions .functions {\r\n        width: 100%;\r\n        margin: 0;\r\n    }\r\n    .brodcast-functions .functions .function-parent {\r\n        display: block;\r\n        margin: 0;\r\n    }\r\n    .brodcast-functions .functions .function-parent .function-col {\r\n        margin-bottom: 20px;\r\n    }\r\n}\r\n.brodcast-functions .broadcast_left_parent {\r\n    padding-left: 0;\r\n    padding-right: 0;\r\n    position: relative;\r\n}\r\n@media (min-width: 991px) {\r\n    .brodcast-functions .broadcast_left_parent .pipeline {\r\n        width: 3px;\r\n        display: block;\r\n        height: 20%;\r\n        top: 0;\r\n        position: absolute;\r\n        left: calc(100% - 1.5px);\r\n        background-color: white;\r\n    }\r\n    .brodcast-functions .broadcast_left_parent .pipeline1 {\r\n        top: 15%;\r\n    }\r\n    .brodcast-functions .broadcast_left_parent .pipeline2 {\r\n        top: calc(15% + 25%);\r\n    }\r\n    .brodcast-functions .broadcast_left_parent .pipeline3 {\r\n        top: calc(15% + 50% + 5px);\r\n    }\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left {\r\n    background: var(--lightorange);\r\n    display: flex;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .broadcast_left_image {\r\n    width: 300px;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .broadcast_left_image img {\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .content {\r\n    flex: 1;\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n    flex-direction: column;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .content h3 {\r\n    text-transform: capitalize;\r\n    color: white;\r\n    position: relative;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .content h3:after {\r\n    width: 80%;\r\n    content: '';\r\n    position: absolute;\r\n    height: 3px;\r\n    border-radius: 4px;\r\n    background-color: var(--text-color);\r\n    left: 10%;\r\n    top: 105%;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .content p.title {\r\n    margin-bottom: 10px;\r\n    margin-top: 10px;\r\n    font-weight: bold;\r\n    color: #fff;\r\n    text-align: center;\r\n    font-size: 18px;\r\n}\r\n.brodcast-functions .broadcast_left_parent .broadcast_left .content p.sub-text {\r\n    text-align: center;\r\n    color: white;\r\n    margin-bottom: 0;\r\n}\r\n@media (max-width: 992px) {\r\n    .brodcast-functions .broadcast_left_parent .broadcast_left {\r\n        display: block;\r\n    }\r\n    .brodcast-functions .broadcast_left_parent .broadcast_left .broadcast_left_image {\r\n        display: block;\r\n        margin-left: auto;\r\n        margin-right: auto;\r\n        padding-top: 50px;\r\n    }\r\n}\r\n.brodcast-functions .broadcast_right_parent {\r\n    display: flex;\r\n    background-color: var(--darkorange);\r\n}\r\n.brodcast-functions .broadcast_right_parent .broadcast_right {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: column;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n.brodcast-functions .broadcast_right_parent .broadcast_right h3 {\r\n    font-size: 28px;\r\n    text-align: center;\r\n    color: var(--text-color);\r\n    position: relative;\r\n    margin-top: 10px;\r\n}\r\n.brodcast-functions .broadcast_right_parent .broadcast_right h3 img {\r\n    width: 40px;\r\n    position: absolute;\r\n    left: 4%;\r\n}\r\n.brodcast-functions .broadcast_right_parent .broadcast_right p {\r\n    color: var(--text-color);\r\n    text-align: center;\r\n}\r\n@media (min-width: 991px) {\r\n    .brodcast-functions .broadcast_right_parent {\r\n        padding-left: 0;\r\n        padding-right: 0;\r\n    }\r\n}\r\n.brodcast-functions .broadcast_padding {\r\n    padding: 45px 40px;\r\n}\r\n@media (max-width: 1286px) {\r\n    .brodcast-functions {\r\n        margin-top: 100px;\r\n    }\r\n}\r\n@media (max-width: 1145px) {\r\n    .brodcast-functions {\r\n        margin-top: 50px;\r\n    }\r\n}\r\n@media (max-width: 1100px) {\r\n    .brodcast-functions {\r\n        margin-top: 20px;\r\n    }\r\n}\r\n@media (max-width: 995px) {\r\n    .brodcast-functions {\r\n        margin-top: 0;\r\n    }\r\n}\r\n";
 styleInject(css_248z$8);
 
 var Brodcast = function (_a) {
     var page3 = _a.page3, page4 = _a.page4;
     return (React__namespace.createElement("section", { className: "brodcast-functions" },
-        React__namespace.createElement(Container$1, { className: "functions" },
-            React__namespace.createElement(Row$1, null,
+        React__namespace.createElement(reactBootstrap.Container, { className: "functions" },
+            React__namespace.createElement(reactBootstrap.Row, null,
                 React__namespace.createElement("div", { className: "function-parent" }, page3.func_img.map(function (value, index) {
                     return React__namespace.createElement(React__namespace.Fragment, { key: index },
-                        React__namespace.createElement(Col$1, { md: 3, lg: 3, className: "function-col" },
+                        React__namespace.createElement(reactBootstrap.Col, { md: 3, lg: 3, className: "function-col" },
                             React__namespace.createElement("div", { className: "function-image" },
                                 React__namespace.createElement("img", { src: value.image, alt: "Image not found" })),
                             React__namespace.createElement("h6", { className: "mt-3" }, value.title)),
@@ -271,9 +83,9 @@ var Brodcast = function (_a) {
                             React__namespace.createElement("span", { className: "line" }),
                             React__namespace.createElement("span", { className: "line" })));
                 })))),
-        React__namespace.createElement(Container$1, { fluid: true },
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, { lg: 6, className: "broadcast_left_parent" },
+        React__namespace.createElement(reactBootstrap.Container, { fluid: true },
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, { lg: 6, className: "broadcast_left_parent" },
                     React__namespace.createElement("div", { className: "broadcast_left" },
                         React__namespace.createElement("div", { className: "broadcast_left_image" },
                             React__namespace.createElement("img", { src: page4.brodcast_image, alt: "swaminarayan" })),
@@ -284,7 +96,7 @@ var Brodcast = function (_a) {
                     React__namespace.createElement("div", { className: "pipeline pipeline1" }),
                     React__namespace.createElement("div", { className: "pipeline pipeline2" }),
                     React__namespace.createElement("div", { className: "pipeline pipeline3" })),
-                React__namespace.createElement(Col$1, { lg: 6, className: "broadcast_right_parent broadcast_padding" },
+                React__namespace.createElement(reactBootstrap.Col, { lg: 6, className: "broadcast_right_parent broadcast_padding" },
                     React__namespace.createElement("div", { className: "broadcast_right" },
                         React__namespace.createElement("h3", { dangerouslySetInnerHTML: { __html: page4.quote_text } }),
                         React__namespace.createElement("p", { dangerouslySetInnerHTML: { __html: page4.quote_subtext } })))))));
@@ -296,8 +108,8 @@ styleInject(css_248z$7);
 var AboutDiv = function (_a) {
     var aboutdiv = _a.aboutdiv;
     console.log("AboutDiv.js>4", aboutdiv);
-    return (React__namespace.createElement(Row$1, null, aboutdiv.map(function (value, index) {
-        return React__namespace.createElement(Col$1, { md: 6, lg: 3, className: "aboutdiv-col", key: index },
+    return (React__namespace.createElement(reactBootstrap.Row, null, aboutdiv.map(function (value, index) {
+        return React__namespace.createElement(reactBootstrap.Col, { md: 6, lg: 3, className: "aboutdiv-col", key: index },
             React__namespace.createElement("div", { className: "aboutdiv" },
                 React__namespace.createElement("div", { className: "aboutdiv-image" },
                     React__namespace.createElement("img", { src: value.image, alt: "Image not found" })),
@@ -313,12 +125,12 @@ var About = function (_a) {
     var page5 = _a.page5;
     return (React__namespace.createElement("section", { className: "about" },
         React__namespace.createElement("img", { className: "about-img", src: page5.about_image, alt: "Image not found" }),
-        React__namespace.createElement(Container$1, null,
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, { lg: 6 },
+        React__namespace.createElement(reactBootstrap.Container, null,
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, { lg: 6 },
                     React__namespace.createElement("h5", { className: "about-heading" }, page5.about_heading),
                     React__namespace.createElement("h2", { className: "about-subheading", dangerouslySetInnerHTML: { __html: page5.about_subheading } })),
-                React__namespace.createElement(Col$1, { lg: 6 },
+                React__namespace.createElement(reactBootstrap.Col, { lg: 6 },
                     React__namespace.createElement("p", { className: "about-para" }, page5.about_para1),
                     React__namespace.createElement("p", { className: "about-para" }, page5.about_para2))),
             React__namespace.createElement(AboutDiv, { aboutdiv: page5.about_values }))));
@@ -328,8 +140,8 @@ var css_248z$5 = ".heading-col {\r\n    display: flex;\r\n    justify-content: c
 styleInject(css_248z$5);
 
 var Heading = function (props) {
-    return (React__namespace.createElement(Row$1, null,
-        React__namespace.createElement(Col$1, { lg: 12, className: "heading-col" },
+    return (React__namespace.createElement(reactBootstrap.Row, null,
+        React__namespace.createElement(reactBootstrap.Col, { lg: 12, className: "heading-col" },
             React__namespace.createElement("h2", { className: "heading" }, props.heading),
             React__namespace.createElement("img", { src: "/Images/Seperator.png", alt: "underline" }))));
 };
@@ -340,12 +152,12 @@ styleInject(css_248z$4);
 var Review = function (_a) {
     var page6 = _a.page6;
     return (React__namespace.createElement("section", { className: "review" },
-        React__namespace.createElement(Container$1, null,
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, null,
+        React__namespace.createElement(reactBootstrap.Container, null,
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, null,
                     React__namespace.createElement(Heading, { heading: "What they Say" }))),
-            React__namespace.createElement(Row$1, null, page6.review.map(function (value, index) {
-                return React__namespace.createElement(Col$1, { md: 6, lg: 4, className: "review-col", key: index },
+            React__namespace.createElement(reactBootstrap.Row, null, page6.review.map(function (value, index) {
+                return React__namespace.createElement(reactBootstrap.Col, { md: 6, lg: 4, className: "review-col", key: index },
                     React__namespace.createElement("div", { className: "review-images" },
                         React__namespace.createElement("img", { src: value.image, alt: "Image not found" }),
                         React__namespace.createElement("div", { className: "review-para" },
@@ -362,7 +174,7 @@ styleInject(css_248z$2);
 
 var Cal = function (_a) {
     var data = _a.data;
-    return (React__namespace.createElement(Col$1, { md: 6, lg: 4 },
+    return (React__namespace.createElement(reactBootstrap.Col, { md: 6, lg: 4 },
         React__namespace.createElement("div", { className: "cal_container" },
             React__namespace.createElement("div", { className: "cal_left" },
                 React__namespace.createElement("p", { className: "small_title" }, data.day),
@@ -386,15 +198,15 @@ var Calendar = function (_a) {
         return result;
     };
     return (React__namespace.createElement("section", { className: "calendar" },
-        React__namespace.createElement(Container$1, null,
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, null,
+        React__namespace.createElement(reactBootstrap.Container, null,
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, null,
                     React__namespace.createElement(Heading, { heading: "Calendar" }))),
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, { className: "calendar-heading" },
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, { className: "calendar-heading" },
                     React__namespace.createElement("h3", { className: "heading active" }, page7.heading1),
                     React__namespace.createElement("h3", { className: "heading" }, page7.heading2))),
-            React__namespace.createElement(Row$1, { className: "mt-5" }, getCalendar()))));
+            React__namespace.createElement(reactBootstrap.Row, { className: "mt-5" }, getCalendar()))));
 };
 
 var css_248z$1 = ".maps {\r\n    padding-top: 70px;\r\n    padding-bottom: 50px;\r\n    background: var(--creamish);\r\n}\r\n.maps .maps-para {\r\n    width: fit-content;\r\n    padding-bottom: 5px;\r\n    margin-right: 15%;\r\n    border-bottom: 2px solid var(--orange);\r\n}\r\n@media (max-width: 992px) {\r\n    .maps .maps-para {\r\n        font-size: 25px;\r\n        margin-right: 50%;\r\n        margin-left: 10px;\r\n    }\r\n    .maps .maps-heading {\r\n        margin-left: 10px;\r\n        margin-bottom: 15px;\r\n    }\r\n}\r\n@media (max-width: 600px) {\r\n    .maps .maps-para {\r\n        margin-right: 30%;\r\n    }\r\n}\r\n.maps .maps-heading {\r\n    text-transform: uppercase;\r\n}\r\n.maps .maps-name-col {\r\n    display: flex;\r\n    justify-content: center;\r\n}\r\n.maps .maps-name-col .maps-name {\r\n    width: 100%;\r\n    height: 120px;\r\n    margin: 5px;\r\n    padding: 5px;\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    border-radius: 8px;\r\n    background: #fff;\r\n    cursor: pointer;\r\n}\r\n.maps .maps-name-col .maps-name:hover {\r\n    box-shadow: 0px 1px 1px 1px var(--lightgray);\r\n}\r\n@media (max-width: 992px) {\r\n    .maps .maps-name-col .maps-name {\r\n        margin-bottom: 15px;\r\n    }\r\n}\r\n";
@@ -403,19 +215,19 @@ styleInject(css_248z$1);
 var Maps = function (_a) {
     var page9 = _a.page9;
     return (React__namespace.createElement("section", { className: "maps" },
-        React__namespace.createElement(Container$1, null,
-            React__namespace.createElement(Row$1, null,
-                React__namespace.createElement(Col$1, { lg: 2 },
+        React__namespace.createElement(reactBootstrap.Container, null,
+            React__namespace.createElement(reactBootstrap.Row, null,
+                React__namespace.createElement(reactBootstrap.Col, { lg: 2 },
                     React__namespace.createElement("h6", { className: "maps-para" }, page9.title),
                     React__namespace.createElement("h3", { className: "maps-heading" }, page9.heading)),
-                React__namespace.createElement(Col$1, { lg: 10, className: "ml-2" },
-                    React__namespace.createElement(Row$1, null,
+                React__namespace.createElement(reactBootstrap.Col, { lg: 10, className: "ml-2" },
+                    React__namespace.createElement(reactBootstrap.Row, null,
                         page9.maps_name.map(function (value, index) {
-                            return React__namespace.createElement(Col$1, { xs: 6, sm: 6, md: 6, lg: 2, key: index, className: "maps-name-col" },
+                            return React__namespace.createElement(reactBootstrap.Col, { xs: 6, sm: 6, md: 6, lg: 2, key: index, className: "maps-name-col" },
                                 React__namespace.createElement("div", { className: "maps-name" },
                                     React__namespace.createElement("h3", null, value)));
                         }),
-                        React__namespace.createElement(Col$1, { lg: 2 })))))));
+                        React__namespace.createElement(reactBootstrap.Col, { lg: 2 })))))));
 };
 
 var css_248z = ".websites {\r\n    background: var(--lightpeach);\r\n    padding-top: 100px;\r\n    padding-bottom: 50px;\r\n}\r\n.websites .website-col {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: column;\r\n    position: relative;\r\n}\r\n.websites .website-col .website-heading {\r\n    text-transform: uppercase;\r\n}\r\n.websites .website-col img {\r\n    position: absolute;\r\n    width: fit-content;\r\n    top: 30px;\r\n}\r\n.websites .website-row {\r\n    margin-top: 3%;\r\n}\r\n.websites .website-row .website-image {\r\n    display: flex;\r\n    justify-content: center;\r\n    align-items: center;\r\n    flex-direction: column;\r\n    padding-top: 15px;\r\n}\r\n.websites .website-row .website-image .website-image-parent {\r\n    width: 100%;\r\n    max-height: 200px;\r\n}\r\n.websites .website-row .website-image .website-image-parent img {\r\n    height: 100%;\r\n    object-fit: cover;\r\n    width: 100%;\r\n    border-radius: 8px;\r\n}\r\n.websites .website-row .website-image p {\r\n    font-weight: 600;\r\n    font-size: 17px;\r\n}\r\n@media (max-width: 992px) {\r\n    .websites .website-row .website-image {\r\n        width: 100%;\r\n        height: auto;\r\n        margin-bottom: 20px;\r\n    }\r\n    .websites .website-row .website-image .website-image-parent {\r\n        max-height: 300px;\r\n    }\r\n    .websites .website-row .website-image p {\r\n        font-size: 20px;\r\n    }\r\n}\r\n@media (max-width: 600px) {\r\n    .websites .website-row {\r\n        margin-top: 10%;\r\n    }\r\n    .websites .website-row .website-image {\r\n        width: 90%;\r\n    }\r\n}\r\n";
@@ -425,10 +237,10 @@ var Websites = function (_a) {
     var page10 = _a.page10;
     console.log("Websites.js>5", page10);
     return (React__namespace.createElement("section", { className: "websites" },
-        React__namespace.createElement(Container$1, null,
+        React__namespace.createElement(reactBootstrap.Container, null,
             React__namespace.createElement(Heading, { heading: "Our Websites" }),
-            React__namespace.createElement(Row$1, { className: "website-row" }, page10.website.map(function (value, index) {
-                return React__namespace.createElement(Col$1, { md: 6, lg: 3, key: index, className: "d-flex justify-content-center" },
+            React__namespace.createElement(reactBootstrap.Row, { className: "website-row" }, page10.website.map(function (value, index) {
+                return React__namespace.createElement(reactBootstrap.Col, { md: 6, lg: 3, key: index, className: "d-flex justify-content-center" },
                     React__namespace.createElement("div", { className: "website-image" },
                         React__namespace.createElement("div", { className: "website-image-parent" },
                             React__namespace.createElement("img", { src: value.image, alt: "Image" })),
