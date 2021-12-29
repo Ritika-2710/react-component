@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import {Col, Container, Row} from "react-bootstrap";
 import "./maps.css"
 const Maps = ({page9}) => {

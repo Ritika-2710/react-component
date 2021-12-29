@@ -1,2 +1,3 @@
 import TestComponent from "./TestComponent/TestComponent";
-export { TestComponent };
+import Main from "./Main/Main";
+export { TestComponent, Main };
